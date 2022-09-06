@@ -9,7 +9,9 @@ const Header = () => {
         <h1>DSMeta</h1>
         <p>
           Desenvolvido por
-          <a href="https://www.instagram.com/devsuperior.ig">@devsuperior.ig</a>
+          <a target={"blank"} href="https://linktr.ee/edu_moreira">
+            Eduardo Moreira
+          </a>
         </p>
       </div>
     </header>
