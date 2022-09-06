@@ -1,5 +1,14 @@
+import BotaoNotificacao from "./components/botaoNotificacao";
+
 function App() {
-  return <div>hello</div>;
+  return (
+    <>
+      <BotaoNotificacao />
+      <BotaoNotificacao />
+      <BotaoNotificacao />
+      <BotaoNotificacao />
+    </>
+  );
 }
 
 export default App;
