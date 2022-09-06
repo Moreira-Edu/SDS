@@ -1,12 +1,18 @@
 import BotaoNotificacao from "./components/botaoNotificacao";
+import Card from "./components/Card";
+import Header from "./components/Header";
 
 function App() {
   return (
     <>
-      <BotaoNotificacao />
-      <BotaoNotificacao />
-      <BotaoNotificacao />
-      <BotaoNotificacao />
+      <Header />
+      <main>
+        <section id="sales">
+          <div className="dsmeta-container">
+            <Card />
+          </div>
+        </section>
+      </main>
     </>
   );
 }
