@@ -27,5 +27,5 @@ public class SalesServices {
         return repository.findSales(min, max, pageable);
     }
 
-    ;
+
 }
