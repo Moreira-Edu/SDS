@@ -1,13 +1,34 @@
-import React, { useState } from "react";
+import axios, { AxiosRequestConfig, AxiosResponseHeaders } from "axios";
+import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import BotaoNotificacao from "../botaoNotificacao";
 import "./styles.css";
 
+interface Sales {
+  data: any;
+  status: number;
+  statusText: string;
+  headers: AxiosResponseHeaders;
+  config: AxiosRequestConfig<any>;
+  request?: any;
+}
+
 const Card = () => {
   const [date, setDate] = useState({
     minDate: new Date(new Date().setDate(new Date().getDate() - 365)),
     maxDate: new Date(),
+  });
+  const [sales, setSales] = useState<Sales>();
+
+  const fetchSales = async () => {
+    const response = await axios.get<Sales>("http://localhost:8080/sales");
+    setSales(() => response.data);
+  };
+
+  useEffect(() => {
+    fetchSales();
+    console.log(sales);
   });
   return (
     <div className="dsmeta-card">
