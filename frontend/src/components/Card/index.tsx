@@ -1,31 +1,27 @@
-import axios, { AxiosRequestConfig, AxiosResponseHeaders } from "axios";
+import { Sale } from "@/models/Sale";
+import { BASE_URL } from "@/utils/request";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import BotaoNotificacao from "../botaoNotificacao";
 import "./styles.css";
 
-interface Sales {
-  data: any;
-  status: number;
-  statusText: string;
-  headers: AxiosResponseHeaders;
-  config: AxiosRequestConfig<any>;
-  request?: any;
-}
-
 const Card = () => {
   const [date, setDate] = useState({
     minDate: new Date(new Date().setDate(new Date().getDate() - 365)),
     maxDate: new Date(),
   });
-  const [sales, setSales] = useState<Sales>();
+  const [sales, setSales] = useState<Sale[]>([]);
 
   useEffect(() => {
+    const dMin = date.minDate.toISOString().split("T")[0];
+    const dMax = date.maxDate.toISOString().split("T")[0];
+
     axios
-      .get<Sales>("http://localhost:8080/sales")
-      .then((res) => setSales(res.data));
-  }, []);
+      .get(`${BASE_URL}/sales?minDate=${dMin}&maxDate=${dMax}`)
+      .then((res) => setSales(res.data.content));
+  }, [date]);
 
   return (
     <div className="dsmeta-card">
@@ -69,45 +65,23 @@ const Card = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td className="show992">#341</td>
-              <td className="show576">08/07/2022</td>
-              <td>Anakin</td>
-              <td className="show992">15</td>
-              <td className="show992">11</td>
-              <td>R$ 55300.00</td>
-              <td>
-                <div className="dsmeta-red-btn-container">
-                  <BotaoNotificacao />
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td className="show992">#341</td>
-              <td className="show576">08/07/2022</td>
-              <td>Anakin</td>
-              <td className="show992">15</td>
-              <td className="show992">11</td>
-              <td>R$ 55300.00</td>
-              <td>
-                <div className="dsmeta-red-btn-container">
-                  <BotaoNotificacao />
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td className="show992">#341</td>
-              <td className="show576">08/07/2022</td>
-              <td>Anakin</td>
-              <td className="show992">15</td>
-              <td className="show992">11</td>
-              <td>R$ 55300.00</td>
-              <td>
-                <div className="dsmeta-red-btn-container">
-                  <BotaoNotificacao />
-                </div>
-              </td>
-            </tr>
+            {sales.map(({ id, sellerName, date, visited, deals, amount }) => (
+              <tr key={id}>
+                <td className="show992">#341</td>
+                <td className="show576">
+                  {new Date(date).toLocaleDateString()}
+                </td>
+                <td>{sellerName}</td>
+                <td className="show992">{visited}</td>
+                <td className="show992">{deals}</td>
+                <td>R${amount.toFixed(2)}</td>
+                <td>
+                  <div className="dsmeta-red-btn-container">
+                    <BotaoNotificacao />
+                  </div>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
