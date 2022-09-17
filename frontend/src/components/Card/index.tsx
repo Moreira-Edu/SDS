@@ -21,15 +21,12 @@ const Card = () => {
   });
   const [sales, setSales] = useState<Sales>();
 
-  const fetchSales = async () => {
-    const response = await axios.get<Sales>("http://localhost:8080/sales");
-    setSales(() => response.data);
-  };
-
   useEffect(() => {
-    fetchSales();
-    console.log(sales);
-  });
+    axios
+      .get<Sales>("http://localhost:8080/sales")
+      .then((res) => setSales(res.data));
+  }, []);
+
   return (
     <div className="dsmeta-card">
       <h2 className="dsmeta-sales-title">Vendas</h2>
