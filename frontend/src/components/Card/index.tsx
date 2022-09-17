@@ -4,7 +4,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import BotaoNotificacao from "../botaoNotificacao";
+import ButtonNotification from "../NotificationButton";
 import "./styles.css";
 
 const Card = () => {
@@ -77,7 +77,7 @@ const Card = () => {
                 <td>R${amount.toFixed(2)}</td>
                 <td>
                   <div className="dsmeta-red-btn-container">
-                    <BotaoNotificacao />
+                    <ButtonNotification saleId={id} />
                   </div>
                 </td>
               </tr>

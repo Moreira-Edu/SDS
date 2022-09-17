@@ -1,4 +1,4 @@
-import BotaoNotificacao from "./components/botaoNotificacao";
+import BotaoNotificacao from "./components/NotificationButton";
 import Card from "./components/Card";
 import Header from "./components/Header";
 
