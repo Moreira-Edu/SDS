@@ -67,7 +67,7 @@ const Card = () => {
           <tbody>
             {sales.map(({ id, sellerName, date, visited, deals, amount }) => (
               <tr key={id}>
-                <td className="show992">#341</td>
+                <td className="show992">{id}</td>
                 <td className="show576">
                   {new Date(date).toLocaleDateString()}
                 </td>
