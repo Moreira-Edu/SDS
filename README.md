@@ -5,7 +5,7 @@
 
 #
 
-<div style="display: flex; gap: 1rem">
+<div style="display: flex; gap: 1rem;">
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
 
@@ -22,6 +22,8 @@
 ![Spring](https://img.shields.io/badge/spring-%236DB33F.svg?style=for-the-badge&logo=spring&logoColor=white)
 
 </div>
+
+#
 
 ![example image](frontend/public/example.PNG)
 Pequena dashboard alimentada pela API, simula dados de vendedores e sua performance, filtrados por data de vendas.
